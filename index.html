@@ -5,53 +5,20 @@
     <title>GET TO POST</title>
 </head>
 <body>
-<!-- -------------------- body starts -------------------- -->
+<form action="https://www.reserve1.jp/studio/member/member_select.php" method="post" id="form">
+    <div hidden>
+        <input type="text" name="of" id="of" value="1480342">
+        <input type="text" name="mn" id="mn" value="3">
+        <input type="text" name="gr" id="gr" value="1">
+        <input type="text" name="ms" id="ms" value="3"><!--画面遷移状態-->
+    </div>
 
-<p>
-    It can be used as a stepping stone, so DO NOT publish it. Place it in your local computer / local network.<br />
-    踏み台として使用することもできるためパブリックにアクセスできる場所に置かず、ローカルPCまたはローカルネットワークに置きましょう。<br />
-</p>
-
-<form id="form" method="post">
-    <div id="inputs"></div>
     <button type="submit">submit</button>
 </form>
 
 <script>
     const form = document.querySelector('#form');
-    const inputs = document.querySelector('#inputs');
-
-    // null   = file:///C:/your-local-directory/get-to-post/index.html#https://www.google.com/search?q=ryoichi-obara#ignoredHash
-    // ''     = file:///C:/your-local-directory/get-to-post/index.html?debug#https://www.google.com/search?q=ryoichi-obara#ignoredHash
-    // 'true' = file:///C:/your-local-directory/get-to-post/index.html?debug=true#https://www.google.com/search?q=ryoichi-obara#ignoredHash
-    const debug = (new URL(document.location.href).searchParams.get('debug') != null);
-    if (debug) {
-        debugger;
-    } else {
-        form.style.display = 'none';
-    }
-
-    // pick up '#specifiedhashvalue' and remove the first character '#'.
-    const hash = document.location.hash.substr(1);
-    const url = new URL(hash);
-
-    // set hash value as action.
-    form.action = `${url.origin}${url.pathname}`; // https://nodejs.org/api/url.html#url-strings-and-url-objects
-
-    // set search parameter as form value.
-    url.searchParams.forEach((v, k) => { // The parameter of URLSearchParams is (v, k) ...
-        const input = document.createElement('input');
-        input.name = k;
-        input.value = v;
-        inputs.appendChild(input);
-    });
-
-    if (!debug) {
-        form.submit();
-    }
-
+    form.submit()
 </script>
-
-<!-- -------------------- body ends -------------------- -->
 </body>
 </html>
